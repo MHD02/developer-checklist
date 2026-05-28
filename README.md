@@ -5,6 +5,7 @@ Local Checklist Studio is a local-first checklist and roadmap manager built with
 It helps organize projects into checklists, sections, tasks and detected issues. The app runs on your machine and stores progress in a local SQLite database.
 
 It does not require MySQL, Composer, Node.js, a PHP framework, or an external service.
+<img width="2559" height="950" alt="image" src="https://github.com/user-attachments/assets/2f888c0c-d5a9-49a2-978d-486f4334bcd1" />
 
 ## Features
 
