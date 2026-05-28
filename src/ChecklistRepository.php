@@ -282,6 +282,17 @@ final class ChecklistRepository
         if (! is_array($definition)) {
             throw new InvalidArgumentException('Imported checklist definition is invalid.');
         }
+        if (isset($definition['sections']) && is_array($definition['sections'])) {
+            $definition['sections'] = array_slice($definition['sections'], 0, 200);
+            foreach ($definition['sections'] as &$section) {
+                foreach (['tasks', 'items'] as $key) {
+                    if (isset($section[$key]) && is_array($section[$key])) {
+                        $section[$key] = array_slice($section[$key], 0, 500);
+                    }
+                }
+            }
+            unset($section);
+        }
         $normalised = $this->normaliseChecklist($definition, 'imported-checklist', $language);
         $slug = $this->uniqueSlug($this->slugify((string) $normalised['title']));
         $normalised['slug'] = $slug;

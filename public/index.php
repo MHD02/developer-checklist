@@ -6,6 +6,10 @@ require __DIR__ . '/../src/ChecklistRepository.php';
 require __DIR__ . '/../src/ChecklistStorage.php';
 require __DIR__ . '/../src/I18nRepository.php';
 
+session_set_cookie_params([
+    'httponly' => true,
+    'samesite' => 'Strict',
+]);
 session_start();
 
 header('X-Frame-Options: DENY');
@@ -15,7 +19,12 @@ header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
 header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
 
 $remoteAddress = $_SERVER['REMOTE_ADDR'] ?? '';
-if (! in_array($remoteAddress, ['127.0.0.1', '::1', 'localhost'], true)) {
+
+// PHP peut recevoir ::ffff:127.x.x.x (IPv4-mapped IPv6) selon la config réseau du serveur.
+// Cette forme désigne le même loopback que 127.0.0.1 mais ne serait pas reconnue par in_array seul.
+$isLocalhost = in_array($remoteAddress, ['127.0.0.1', '::1', 'localhost'], true)
+    || (bool) preg_match('/^::ffff:127\.\d+\.\d+\.\d+$/i', $remoteAddress);
+if (! $isLocalhost) {
     http_response_code(403);
     echo 'Access denied: this checklist app is local only.';
     exit;
@@ -299,6 +308,9 @@ try {
         $definitions = $import['definitions'] ?? null;
 
         if (is_array($definitions)) {
+            if(count($definitions) > 20){
+                jsonResponse(['ok' => false, 'message' => 'Too many definitions: max 20 per import.'], 422);
+            }
             foreach ($definitions as $definition) {
                 if (is_array($definition)) {
                     $checklist = $repository->importDefinition($definition, $lang);
