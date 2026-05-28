@@ -1,0 +1,50 @@
+{
+    "meta": {
+        "slug": "example-project",
+        "title": "Example project",
+        "description": "A small editable example checklist for any project.",
+        "language": "en",
+        "version": 5,
+        "updated_at": "2026-05-28T07:54:33+00:00"
+    },
+    "sections": [
+        {
+            "id": "section-validation",
+            "title": "2 — Validation",
+            "description": "Check quality before calling the project complete.",
+            "tasks": [
+                {
+                    "id": "task-test-main-flow",
+                    "title": "Test the main user flow",
+                    "description": "Use the project like a real user.",
+                    "priority": "critical"
+                },
+                {
+                    "id": "task-document-decisions",
+                    "title": "Document important decisions",
+                    "description": "Keep future maintenance simple.",
+                    "priority": "medium"
+                }
+            ]
+        },
+        {
+            "id": "section-planning",
+            "title": "1 — Planning",
+            "description": "Prepare the project before execution.",
+            "tasks": [
+                {
+                    "id": "task-define-goal",
+                    "title": "Define the project goal",
+                    "description": "Write the expected outcome in one clear sentence.",
+                    "priority": "high"
+                },
+                {
+                    "id": "task-list-risks",
+                    "title": "List the main risks",
+                    "description": "Security, deadlines, missing data, budget or technical limits.",
+                    "priority": "medium"
+                }
+            ]
+        }
+    ]
+}

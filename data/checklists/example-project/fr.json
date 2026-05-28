@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "slug": "example-project",
+    "title": "Projet exemple",
+    "description": "Petite checklist exemple modifiable pour n’importe quel projet.",
+    "language": "fr",
+    "version": 5,
+    "updated_at": "2026-05-28T00:00:00Z"
+  },
+  "sections": [
+    {
+      "id": "section-planning",
+      "title": "1 — Préparation",
+      "description": "Préparer le projet avant l’exécution.",
+      "tasks": [
+        {
+          "id": "task-define-goal",
+          "title": "Définir l’objectif du projet",
+          "description": "Écrire le résultat attendu en une phrase claire.",
+          "priority": "high"
+        },
+        {
+          "id": "task-list-risks",
+          "title": "Lister les risques principaux",
+          "description": "Sécurité, délais, données manquantes, budget ou limites techniques.",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "id": "section-validation",
+      "title": "2 — Validation",
+      "description": "Vérifier la qualité avant de considérer le projet terminé.",
+      "tasks": [
+        {
+          "id": "task-test-main-flow",
+          "title": "Tester le parcours utilisateur principal",
+          "description": "Utiliser le projet comme un vrai utilisateur.",
+          "priority": "critical"
+        },
+        {
+          "id": "task-document-decisions",
+          "title": "Documenter les décisions importantes",
+          "description": "Garder la maintenance future simple.",
+          "priority": "medium"
+        }
+      ]
+    }
+  ]
+}
